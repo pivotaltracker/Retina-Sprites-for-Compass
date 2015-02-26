@@ -2,7 +2,7 @@
 
 /**
  * Mixin for retina backgrounds where you can't use a sprite.
- * 
+ *
  * - Make sure you have a file@2x.png file additional to your file.png.
  * - The mixin prepends $imgPath, which should be set globally at some point. Default is: "img/"
  *
@@ -10,11 +10,11 @@
  *     li {
  *       @include retina-background(arrow, no-repeat 10px 15px)
  *     }
- *     
+ *
  *     a.external {
  *       @include retina-background(external, no-repeat right)
  *     }
- * 
+ *
  * @param {String} $file Path to file relative to images folder defined in config.rb and without a file extension
  * @param {Object} [$attr] Additional attributes like position or repetition. E.g. `no-repeat top right`
  * @param {String} [$type] The file type.
@@ -31,7 +31,7 @@
 
   $width: image-width($image);
   $height: image-height($image);
- 
+
   @include retina {
     background-image: image-url($image2x);
     background-size: $width $height;

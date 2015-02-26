@@ -19,13 +19,13 @@ $retina-sprite-urls2x    : 0;
  * A mixin to create retina sprites with hover & active states
  *
  * You have to register a pair of sprites using `{@link #retina-sprite-add}` and then you can use this mixin:
- * 
+ *
  *     @include retina-sprite-add(icons, "icons/*.png", "icons-retina/*.png");
  *
  *     .my-icon {
  *       @include retina-sprite(icon-name, icons);
  *     }
- * 
+ *
  * @param {String} $name
  * @param {String} [$sprite-name]
  * @param {Boolean} [$hover=false]
@@ -43,7 +43,7 @@ $retina-sprite-urls2x    : 0;
 
   $sprite       : nth($retina-sprite-sprites, $index);
   $sprite-url   : nth($retina-sprite-urls, $index);
-  
+
   $sprite2x     : nth($retina-sprite-sprites2x, $index);
   $sprite-url2x : nth($retina-sprite-urls2x, $index);
 
@@ -97,7 +97,7 @@ $retina-sprite-urls2x    : 0;
 //
 @mixin _retina-sprite($name, $sprite, $sprite-url, $sprite2x, $sprite-url2x, $hover, $active, $dimensions: true, $pad: 0) {
   display: inline-block;
-  
+
   background-image: $sprite-url;
   @include _retina-sprite-bg-pos($sprite, $name, $pad);
 
@@ -113,11 +113,11 @@ $retina-sprite-urls2x    : 0;
   @if $active == true {
     &:active { @include _retina-sprite-bg-pos($sprite, $name + _active, $pad); }
   }
-  
+
   @if $pad > 0 {
     padding: $pad;
   }
-  
+
   @include retina {
     background-image: $sprite-url2x;
     @include background-size(ceil(image-width(sprite-path($sprite2x)) / 2) auto);
@@ -126,7 +126,7 @@ $retina-sprite-urls2x    : 0;
     //  you have sprites that have an odd-number of pixels in width
 
     @include _retina-sprite-bg-pos($sprite2x, $name, $pad, 2);
-    
+
     @if $hover == true {
       &:hover  { @include _retina-sprite-bg-pos($sprite2x, $name + _hover, $pad, 2); }
     }
