@@ -31,7 +31,7 @@ $retina-sprite-urls2x    : 0;
  * @param {Boolean} [$hover=false]
  * @param {Boolean} [$active=false]
  */
-@mixin retina-sprite($name, $sprite-name: 0, $hover: false, $active: false) {
+@mixin retina-sprite($name, $sprite-name: 0, $dimensions: false, $hover: false, $active: false) {
   $index: 2;
   $len: length($retina-sprite-names);
 
@@ -47,9 +47,36 @@ $retina-sprite-urls2x    : 0;
   $sprite2x     : nth($retina-sprite-sprites2x, $index);
   $sprite-url2x : nth($retina-sprite-urls2x, $index);
 
-  @include _retina-sprite($name, $sprite, $sprite-url, $sprite2x, $sprite-url2x, $hover, $active);
+  @include _retina-sprite($name, $sprite, $sprite-url, $sprite2x, $sprite-url2x, $hover, $active, $dimensions);
 }
 
+@function retina-sprite-width($name, $sprite-name: 0) {
+  $index: 2;
+  $len: length($retina-sprite-names);
+
+  @for $i from $index through $len {
+    @if $sprite-name == nth($retina-sprite-names, $i) {
+      $index: $i;
+    }
+  }
+
+  $sprite : nth($retina-sprite-sprites, $index);
+  @return image-width(sprite-file($sprite, $name));
+}
+
+@function retina-sprite-height($name, $sprite-name: 0) {
+  $index: 2;
+  $len: length($retina-sprite-names);
+
+  @for $i from $index through $len {
+    @if $sprite-name == nth($retina-sprite-names, $i) {
+      $index: $i;
+    }
+  }
+
+  $sprite : nth($retina-sprite-sprites, $index);
+  @return image-height(sprite-file($sprite, $name));
+}
 
 /**
  * @param {String} $name
