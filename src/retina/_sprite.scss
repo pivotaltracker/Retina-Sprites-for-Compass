@@ -128,7 +128,7 @@ $retina-sprite-urls2x    : 0;
   background-image: $sprite-url;
   @include _retina-sprite-bg-pos($sprite, $name, $pad);
 
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
 
   @if $dimensions == true {
     @include sprite-dimensions($sprite, $name);
@@ -147,7 +147,9 @@ $retina-sprite-urls2x    : 0;
 
   @include retina {
     background-image: $sprite-url2x;
-    @include background-size(ceil(image-width(sprite-path($sprite2x)) / 2) auto);
+    // workaround for Chrome rendering bug when zoomed
+    // see issue: https://code.google.com/p/chromium/issues/detail?id=260319
+    @include background-size(ceil(image-width(sprite-path($sprite2x)) / 2) ceil(image-height(sprite-path($sprite2x)) / 2));
     //  sprite-path() returns the path of the generated sprite sheet, which
     //  image-width() calculates the width of. the ceil() is in place in case
     //  you have sprites that have an odd-number of pixels in width
