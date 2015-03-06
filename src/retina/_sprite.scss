@@ -123,8 +123,6 @@ $retina-sprite-urls2x    : 0;
 //    $spacing on the sprite maps). Great for iPhone interfaces to make hit areas bigger.
 //
 @mixin _retina-sprite($name, $sprite, $sprite-url, $sprite2x, $sprite-url2x, $hover, $active, $dimensions: true, $pad: 0) {
-  display: inline-block;
-
   background-image: $sprite-url;
   @include _retina-sprite-bg-pos($sprite, $name, $pad);
 
